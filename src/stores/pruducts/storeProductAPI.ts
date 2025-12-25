@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
-import productType from '/productType.ts'
+import type { productsType } from './productType'
 
 
 export const useStoreProductAPI = defineStore('storeProductAPI', {
     state: () => ({
-        products: [] as productType.Products[],
+        products: [] as productsType[],
         loading: false,
         error: null as string | null
     }),

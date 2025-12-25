@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import {autorizationAPI} from "@/stores/Autorization/autorizationAPI.ts";
+import {authorizationAPI} from "@/stores/authorization/autorizationAPI.ts";
 
 const singUpEmit = ref<number>(null)
 const emit = defineEmits(['singUpEmit'])
@@ -9,7 +9,7 @@ let userName = ref<string>('')
 let userPassword = ref<string>('')
 let userEmail = ref<string>('')
 
-const authSingUpStore = autorizationAPI()
+const authSingUpStore = authorizationAPI()
 
 const chancePage = () => {
   singUpEmit.value = 1
@@ -68,7 +68,3 @@ const handleSingUp = () => {
     </v-card>
   </v-container>
 </template>
-
-<style scoped>
-
-</style>

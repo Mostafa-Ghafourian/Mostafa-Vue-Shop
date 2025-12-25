@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import {autorizationAPI} from "@/stores/Autorization/autorizationAPI.ts";
+import { authorizationAPI } from "@/stores/authorization/autorizationAPI.ts";
 
-const authLoginStore = autorizationAPI()
+const authLoginStore = authorizationAPI()
 
 const loginEmit = ref<number>(null)
 const emit = defineEmits(['loginEmit'])
@@ -59,7 +59,3 @@ const handleLogin = () => {
     </v-card>
   </v-container>
 </template>
-
-<style scoped>
-
-</style>

@@ -7,9 +7,15 @@ export const buyAPI = defineStore('buyAPI', {
     quantity: null,
     userId: 1,
     title: null,
-    prise: null,
+    price: null,
     image: null,
-    userBasket: [] as { id: number; title: string; price: number; image: string; quantity: number }[]
+    userBasket: [] as {
+      id: number;
+      title: string;
+      price: number;
+      image: string;
+      quantity: number
+    }[]
   }),
 
   actions: {
@@ -37,7 +43,7 @@ export const buyAPI = defineStore('buyAPI', {
           this.userBasket.push({
             id: this.productId,
             title: this.title,
-            price: this.prise,
+            price: this.price,
             image: this.image,
             quantity: this.quantity
           });
@@ -49,7 +55,6 @@ export const buyAPI = defineStore('buyAPI', {
         this.loading = false;
       }
     },
-
     addToBasket(product: {
       id: number;
       title: string;
@@ -61,6 +66,38 @@ export const buyAPI = defineStore('buyAPI', {
         existing.quantity += quantity;
       } else {
         this.userBasket.push({...product, quantity});
+      }
+    },
+
+    updateQuantity(id: number, delta: number) {
+      const item = this.userBasket.find(p => p.id === id);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) this.removeItem(id);
+      }
+    },
+
+    removeItem(id: number) {
+      const index = this.userBasket.findIndex(p => p.id === id);
+      if (index !== -1) this.userBasket.splice(index, 1);
+    },
+
+    async completePurchase() {
+      this.loading = true;
+      try {
+        for (const item of this.userBasket) {
+          this.productId = item.id;
+          this.quantity = item.quantity;
+          this.title = item.title;
+          this.price = item.price;
+          this.image = item.image;
+          await this.buyProduct();
+        }
+        this.userBasket = [];
+      } catch (err) {
+        console.error(err);
+      } finally {
+        this.loading = false;
       }
     }
   }

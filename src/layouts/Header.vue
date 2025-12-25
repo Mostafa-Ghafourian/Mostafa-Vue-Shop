@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {PhBasket, PhUserCircle} from "@phosphor-icons/vue";
-import {ref} from "vue";
 import router from "@/router";
 
 const isLogin = localStorage.getItem('Token')
@@ -9,7 +8,7 @@ const goToBasket = () => {
   router.push('/basket')
 }
 const goToAutorization = () => {
-  router.push('/a')
+  router.push('/Authorization')
 }
 const goToHome = () => {
   router.push('/')
@@ -17,8 +16,8 @@ const goToHome = () => {
 </script>
 
 <template>
-  <div class="h-auto home-header__background rounded-bottom-5">
-    <v-row class="d-flex justify-content-between align-items-center p-4 ">
+  <div class="h-auto header__background rounded-bottom-5">
+    <v-row class="d-flex justify-content-between align-items-center p-4">
       <v-col cols="6">
         <v-btn @click="goToBasket" variant="text" class="h-100">
           <PhBasket size="42" class="mx-2"/>
@@ -36,7 +35,7 @@ const goToHome = () => {
 </template>
 
 <style scoped>
-.home-header__background {
+.header__background {
   background-color: #79e2ff;
 }
 </style>

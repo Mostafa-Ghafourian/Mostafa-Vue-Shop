@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Login from '@/views/Authorization/Login.vue'
-import SignUp from '@/views/Authorization/SignUp.vue'
+import Login from '@/views/authorization/Login.vue'
+import SignUp from '@/views/authorization/SignUp.vue'
 import { ref } from "vue"
 
 let loginOrSingUp = ref<number>(1)
@@ -23,9 +23,3 @@ const handleLogin = (value: number) => {
     @singUpEmit="handleLogin"
   />
 </template>
-
-
-
-<style scoped>
-
-</style>
